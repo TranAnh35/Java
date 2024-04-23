@@ -31,7 +31,7 @@ public class TicTacToeApplication {
                 while(game.gameOver().equals("notOver")){
                     if(game.currentMarker == game.userMarker){
                         // Lượt của người chơi
-                        System.out.println("Luot cua ban! Chon mot o (1-9): ");
+                        System.out.println("\nLuot cua ban! Chon mot o (1-9): ");
                         int spot = sc.nextInt();
                         while(!game.playTurn(spot)){
                             System.out.println("O nay da duoc chon hoac khong hop le. Hay chon o khac: ");
@@ -40,7 +40,7 @@ public class TicTacToeApplication {
                         System.out.println("Ban da chon o " + spot);
                     } else {
                         // Lượt của AI
-                        System.out.println("Luot cua AI!");
+                        System.out.println("\nLuot cua AI!");
                         int aiSpot = ai.pickSpot(game);
                         game.playTurn(aiSpot);
                         System.out.println("AI da chon o " + aiSpot);
