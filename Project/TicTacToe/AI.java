@@ -33,9 +33,9 @@ class AI {
 
     private int minimax(TicTacToe game, int depth, boolean isMaximizing) {
         String result = game.gameOver();
-        if (result.equals(game.userMarker + "win")) {
+        if (result.equals(game.userMarker + " win")) {
             return -1;
-        } else if (result.equals(game.aiMarker + "win")) {
+        } else if (result.equals(game.aiMarker + " win")) {
             return 1;
         } else if (result.equals("Draw")) {
             return 0;

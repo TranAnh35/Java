@@ -179,7 +179,7 @@ public class TicTacToe {
     public String gameOver() {
         boolean didSomeoneWin = isThereAWinner();
         if (didSomeoneWin) {
-            return this.winner + "win";
+            return this.winner + " win";
         } else if (isTheBoardFilled()) {
             return "Draw";
         } else {
