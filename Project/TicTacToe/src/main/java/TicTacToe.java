@@ -1,4 +1,4 @@
-package Project.TicTacToe;
+package Project.TicTacToe.src.main.java;
 
 public class TicTacToe {
     // Hình ảnh của bảng cờ có chỉ mục
@@ -27,34 +27,34 @@ public class TicTacToe {
 
     // Thiết lập
     // Tạo bảng
-    protected char[] board;
+    protected int[] board;
 
     // Cho phép người chơi thể hiện di chuyển của họ
-    protected char userMarker;
+    protected int userMarker;
 
     // Cho phép máy thể hiện di chuyển của họ
-    protected char aiMarker;
+    protected int aiMarker;
 
     // Tuyên bố người chiến thắng
-    protected char winner;
+    protected int winner;
 
     // Khai báo điểm đánh dấu hiện tại
-    protected char currentMarker;
+    protected int currentMarker;
 
     // Tạo 1 constructor
-    public TicTacToe(char playerToken, char aiToken) {
+    public TicTacToe(int playerToken, int aiToken) {
         this.userMarker = playerToken;
         this.aiMarker = aiToken;
-        this.winner = '-';
+        this.winner = -1;
         this.board = setBoard();
         this.currentMarker = userMarker;
     }
 
     // Tạo bảng cờ
-    public static char[] setBoard() {
-        char[] board = new char[9];
+    public static int[] setBoard() {
+        int[] board = new int[9];
         for (int i = 0; i < board.length; i++) {
-            board[i] = '-';
+            board[i] = 0;
         }
         return board;
     }
@@ -76,7 +76,7 @@ public class TicTacToe {
 
     // Kiểm tra xem vị trí đã được chọn chưa
     public boolean isSpotTaken(int number) {
-        return board[number-1] != '-';
+        return board[number-1] != 0;
     }
 
     // In bảng cờ
@@ -110,9 +110,9 @@ public class TicTacToe {
 
     // Kiểm tra xem có người chiến thắng không
     public boolean isThereAWinner() {
-        boolean diagonalsAndMiddles = (rightDi() || leftDi() || middleRow() || secondCol()) && board[4] != '-';
-        boolean topAndFirst = (topRow() || firstCol()) && board[0] != '-';
-        boolean bottomAndThird = (bottomRow() || thirdCol()) && board[8] != '-';
+        boolean diagonalsAndMiddles = (rightDi() || leftDi() || middleRow() || secondCol()) && board[4] != 0;
+        boolean topAndFirst = (topRow() || firstCol()) && board[0] != 0;
+        boolean bottomAndThird = (bottomRow() || thirdCol()) && board[8] != 0;
 
         // Kiểm tra các trường hợp chiến thắng
         if (diagonalsAndMiddles) {
@@ -168,7 +168,7 @@ public class TicTacToe {
     // Kiểm tra xem có hòa không
     public boolean isTheBoardFilled() {
         for (int i = 0; i < board.length; i++) {
-            if (board[i] == '-') {
+            if (board[i] == 0) {
                 return false;
             }
         }
@@ -179,8 +179,14 @@ public class TicTacToe {
     public String gameOver() {
         boolean didSomeoneWin = isThereAWinner();
         if (didSomeoneWin) {
-            return this.winner + " win";
+            String output = "";
+            if(this.winner == 1){
+                output = "X win";
+            }else if(this.winner == 2)
+                output = "O win";
+            return output;
         } else if (isTheBoardFilled()) {
+            winner = 3;
             return "Draw";
         } else {
             return "notOver";
